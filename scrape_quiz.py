@@ -68,7 +68,7 @@ def scrape(html_file_path):
 	print(f"Question saved:  {output_file}")
 
 
-
+# command line controls
 if len(sys.argv) <= 1 or sys.argv[1].lower() == "-h":
 	print("USAGE: python3 scrape_quiz.py <path to html file>")
 	print("\t-The output will be saved to the same location as the html file")
