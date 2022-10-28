@@ -2,7 +2,7 @@ import re
 import os
 import sys
 from bs4 import BeautifulSoup as bs
-from lib.question import Question
+from question import Question
 
 
 def scrape(html_file_path):
