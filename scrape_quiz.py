@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 	print("BeautifulSoup4 not installed: Use <pip3 install bs4> to install")
 	exit()
 	
-from question import Question
+from lib.question import Question
 
 
 def scrape(html_file_path):
@@ -36,6 +36,7 @@ def scrape(html_file_path):
 				question_text = container.find(class_="question_text user_content").get_text()
 
 				q.question = question_text.strip()
+				print(q.question)
 
 
 				question_number = container.find('div',{'class':'header'}).find('span',{'class':'name question_name'}).get_text()
@@ -48,7 +49,17 @@ def scrape(html_file_path):
 
 				answers = []
 				for ans in answers_containers:
-					answers.append(ans['title'])
+					print("="*30)
+					answer = ""
+					try:
+						answer = ans['title']
+					except:
+						answer = ans.find("div",{"class":"answer_text"}).get_text()
+						print("<------ TITLE KEY ERROR ------->")
+
+					print(answer)
+					print("\n"*3)
+					answers.append(answer)
 
 				q.answers = answers
 
@@ -68,7 +79,7 @@ def scrape(html_file_path):
 	print(f"Question saved:  {output_file}")
 
 
-# command line controls
+
 if len(sys.argv) <= 1 or sys.argv[1].lower() == "-h":
 	print("USAGE: python3 scrape_quiz.py <path to html file>")
 	print("\t-The output will be saved to the same location as the html file")
