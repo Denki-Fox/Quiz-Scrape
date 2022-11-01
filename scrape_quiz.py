@@ -56,10 +56,9 @@ def scrape(html_file_path):
 						answer = ans['title']
 					except:
 						answer = ans.find("div",{"class":"answer_text"}).get_text()
-						print("<------ TITLE KEY ERROR ------->")
+						
 
-					print(answer)
-					print("\n"*3)
+
 					answers.append(answer)
 
 				q.answers = answers
